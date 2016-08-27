@@ -1,2 +1,2 @@
-# AccessibleDeezer
-Simple interface Deezer accessible pour les non-voyants
+# AccessiblePortal
+Simple interface portail accessible pour les non-voyants
