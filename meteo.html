@@ -1,0 +1,19 @@
+<html>
+    
+    <head>
+        <script src="scripts/main.js"></script>
+		<script src="scripts/jquery.js"></script>
+    </head>
+    
+    <body>
+    
+        <input type="text" name="searchValue" id="searchValue" title="Saisir le nom d'une ville" onkeypress="if (event.keyCode==13) { loadMeteoNow(this.value); loadMeteoForecast(this.value, 5); }" />
+        
+        <div id="meteo-now-content"></div>
+        <div id="meteo-forecast-content"></div>
+        
+        <a href="index.html" target="_blank">Retour au menu principal</a><br/>
+        
+    </body>
+    
+</html>
