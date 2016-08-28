@@ -122,3 +122,33 @@ function loadMeteoForecast(searchValue, count) {
 	});
 }
 
+function loadNewsContent() {
+     $.ajax({
+		//url: "tmp/test.html",
+        url: "proxy/newsproxy.php?url=" + getRequestParameter("feedurl"),
+		dataType: "html",
+		success: function(response) {
+            var htmlContent = "";
+            var pList = $($.parseHTML(response)).find("#articleBody").find("p");
+            var articleBodyLength = pList.length;
+            if (articleBodyLength == 0) {
+                pList = $($.parseHTML(response)).find(".contenu .texte").find("p");
+                articleBodyLength = pList.length;
+            }
+            if (pList.length > 0) {
+                pList.each(function() {
+                    var currentItemText = $(this).text();
+                    if (currentItemText.indexOf("Lire aussi") == -1) {
+                        htmlContent += currentItemText + "<br/><br/>";
+                    }
+                });
+            }
+            $("#news-content").html(htmlContent);
+		}
+	});
+}
+
+function getRequestParameter(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
