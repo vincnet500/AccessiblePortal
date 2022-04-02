@@ -152,6 +152,7 @@ function loadSportContent(sporturl) {
     $.ajax({
         url: "proxy/newsproxy.php?url=" + sporturl,
         dataType: "html",
+        cache: false,
         success: function(response) {
             var htmlContent = "";
             var pList = $($.parseHTML(response)).find(".carousel:first-child ul li a.hybridcard");
