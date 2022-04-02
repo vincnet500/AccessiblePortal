@@ -148,6 +148,24 @@ function loadNewsContent() {
 	});
 }
 
+function loadSportContent(sporturl) {
+    $.ajax({
+        url: "proxy/newsproxy.php?url=" + sporturl,
+        dataType: "html",
+        success: function(response) {
+            var htmlContent = "";
+            var pList = $($.parseHTML(response)).find(".carousel:first-child ul li a.hybridcard");
+            if (pList.length > 0) {
+                pList.each(function() {
+                    var currentItemTitle = $(this).find(".HybridCard__title").text() + " " + $(this).find(".HybridCard__subtitle").text();
+                    htmlContent += '<a href="' + $(this).attr("href") + '" target="_blank">' + currentItemTitle + "</a><br/><br/>";
+                });
+            }
+            $("#sport-content").html(htmlContent);
+        }
+    });
+}
+
 function getRequestParameter(name){
    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
       return decodeURIComponent(name[1]);
